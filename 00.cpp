@@ -5,7 +5,6 @@ Author: gourav_27
 #include<bits/stdc++.h>
 using namespace std;
 
-
 #define hurry_up ios_base::sync_with_stdio(false); cout.tie(0); cin.tie(0);
 
 #define int long long int

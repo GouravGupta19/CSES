@@ -120,8 +120,8 @@ ll mod_mul(ll a,ll b){
 ll mod_add(ll a,ll b){
     return ((a%mod) + (b%mod))%mod;
 }
-ll mod_sub(ll a, ll b){
-    return ((a - b) % mod + mod) % mod;
+ll mod_sub(ll a,ll b){
+    return ((a%mod) - (b%mod))%mod;
 }
 ll mod_inv(ll a,ll b=mod-2){
     return mod_pow(a,b);
@@ -139,25 +139,39 @@ bool in(int i,int j,int n,int m){
     rtn (i>=0 && i<n && j>=0 && j<m);
 }
 
-
+bool check(vi& a,int time,int t){
+    int n=a.sz;
+    int cnt=0;
+    loop(i,0,n){
+        cnt += min(time/a[i],(int)1e12);
+    }
+    rtn (cnt>=t);
+}
 
 int solve(){
-    
+    int n,t; cin>>n>>t;
+    vi a(n); cin>>a;
+    int lo=1LL,hi=1LL *((*max_element(all(a)) )*t);
 
+    int ans=hi;
+    while(lo<=hi){
+        int mid= lo + (hi-lo)/2 ;   //->time
+        if(check(a,mid,t)){
+            ans =min(mid,ans);
+            hi=mid-1;
+        }else{
+            lo=mid+1;
+        }
+    }
+
+    rtn ans;
 }
 
 int32_t main(){
     hurry_up
     
-    TCS{
-
-        //solve();
-
-       //outln(solve());
-
-        // if(solve()) outln("YES");
-        // else outln("NO");
-    }
+    //solve();
+    outln(solve());
     
     rtn 0;
 }

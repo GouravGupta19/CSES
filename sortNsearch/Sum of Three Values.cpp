@@ -139,25 +139,54 @@ bool in(int i,int j,int n,int m){
     rtn (i>=0 && i<n && j>=0 && j<m);
 }
 
+bool check(vi& val,vi& idx,int reqd,int si){
+    int n=val.sz;
+    if(si>n-2) rtn 0;
+   
+    int i=si,j=n-1;
+    while(i<j){
+        int sm=val[i]+val[j];
+        if(sm==reqd){
+            cout<<idx[si-1]+1<<' '<<idx[i]+1<<' '<<idx[j]+1<<nl;
+            rtn 1;
+        }else if(sm>reqd) j--;
+        else i++;
+    }
 
+    rtn 0;
+}
 
-int solve(){
-    
+void solve(){
+    int n,x; cin>>n>>x;
+    vi a(n); cin>>a;
+    vpi v;
+    loop(i,0,n){
+        v.emplace_back(a[i],i);
+    }
+    sortAll(v);
+    //outln(v);
+    vi val,idx;
+    loop(i,0,n){
+        val.emplace_back(v[i].ff);
+        idx.emplace_back(v[i].ss);
+    }
+    // outln(val);
+    // outln(idx);
 
+    loop(i,0,n){
+        if(val[i]>=x) continue;
+        int reqd=x-val[i];
+        if(check(val,idx,reqd,i+1)) rtn;
+    }
+
+    outln("IMPOSSIBLE");
 }
 
 int32_t main(){
     hurry_up
     
-    TCS{
-
-        //solve();
-
-       //outln(solve());
-
-        // if(solve()) outln("YES");
-        // else outln("NO");
-    }
+    solve();
+    //outln(solve());
     
     rtn 0;
 }

@@ -212,25 +212,34 @@ bool in(int i,int j,int n,int m){
 }
 
 
+int dfs(vi adj[],int n,int node,vi& dp){
+    if(node==n) rtn 1;
+    if(dp[node]!=-1) rnt dp[node];
+
+    int ways=0;
+    for(int neigh:adj[node]){
+        ways = (ways+ dfs(adj,n,neigh,dp) )%mod ;
+    }
+    
+    rtn dp[node] = ways;
+}
 
 
 int solve(){
-    
-
+    int n,m; cin>>n>>m;
+    vi adj[n+1];
+    loop(i,0,m){
+        int x,y; cin>>x>>y;
+        adj[x].emplace_back(y);
+    }
+    vi dp(n+1,-1);
+    rnt dfs(adj,n,1,dp);
 }
 
 int32_t main(){
     gourav_27
     
-    test_cases{
-
-        //solve();
-
-       //outln(solve());
-
-        // if(solve()) outln("YES");
-        // else outln("NO");
-    }
+    outln(solve());
     
     rtn 0;
 }

@@ -1,4 +1,4 @@
-//Author: gourav_27
+// gourav_27
 
 /*
 stars don’t ask to be seen,
@@ -27,6 +27,9 @@ using namespace std;
 inline void ln(){cout<<'\n';}
 template<typename X> inline void outln(X x){ cout<<x<<'\n';}
 template<typename X> inline void out(X x){ cout<<x<<' ';}
+#define accum(a) accumulate(a.begin(),a.end(),0LL)
+#define lb(a,x) lower_bound(a.begin(),a.end(),x) - a.begin()
+#define ub(a,x) upper_bound(a.begin(),a.end(),x) - a.begin()
 
 #define vi vector<int>
 #define vvi vector<vi>
@@ -46,15 +49,15 @@ template<typename X> inline void out(X x){ cout<<x<<' ';}
 #define pl pair<ll,ll>
 #define vpl vector<pl>
 
-#define loop(i,a,b)         for(int i=a;i<b;i++)     //for loop from a(included)->b(included)
-#define roop(i,b,a)         for(int i=b;i>=a;i--)    //rev. for loop from b(included)->a(inluded)
-#define all(x)              x.begin(),x.end()
-#define sortAll(x)          sort(all(x));            //sort in ascending
-#define tr(it,a)            for(auto it=a.begin();it!=a.end();it++)   // to iterate in something named a
-#define rtr(it,a)           for(auto it=a.rbegin();it!=a.rend();it--)   // to iterate in something named 
-#define inp(a,n)            for(int i=0;i<n;i++) cin>>a[i]
-#define inp_vec(vec, n)     for(int i=0;i<n;i++) {int x;cin>>x;vec.push_back(x);}
-#define inp_mat(mat, n, m)  for(int i=0;i<n;i++) {for(int j=0;j<m;j++) {int x;cin>>x;mat[i][j]=x;}}
+#define loop(i,a,b) for(int i=a;i<b;i++)
+#define roop(i,b,a) for(int i=b;i>=a;i--)
+#define all(x) x.begin(),x.end()
+#define sortAll(x) sort(all(x));
+#define tr(it,a) for(auto it=a.begin();it!=a.end();it++)
+#define rtr(it,a) for(auto it=a.rbegin();it!=a.rend();it++)
+#define inp(a,n) for(int i=0;i<n;i++) cin>>a[i]
+#define inp_vec(vec, n) for(int i=0;i<n;i++) {int x;cin>>x;vec.push_back(x);}
+#define inp_mat(mat, n, m) for(int i=0;i<n;i++) {for(int j=0;j<m;j++) {int x;cin>>x;mat[i][j]=x;}}
 
 //====================================DEBUG============================================================
 #define dbg(x) cerr << #x << " = " << x << endl;
@@ -78,35 +81,33 @@ template<typename T> T _min(T a,T b){ rtn (a<b)? (a):(b); }
 template<typename T>
 T cl(T num,T k){
     if(num==0) rnt 0;
-    else if(num>0){
+    else if(num>0)
         rtn (num+k-1)/k;
-    }else{ //-ve
+    else
         rtn -1*(abs(num)/k);
-    }
 }
 template<typename T>
 T fl(T num,T k){
     if(num==0) rnt 0;
-    else if(num>0){
+    else if(num>0)
         rtn (num/k);
-    }else{ //-ve
+    else
         rtn -1*((abs(num)+k-1)/k);
-    }
 }
 //===============end of floor-ceil======================
 
 //=================Maths================================
 vi sieve(int n) {
-    vector<bool> is_prime(n + 1, true);  
-    is_prime[0] = is_prime[1] = false;   
-    for (int i = 2; i * i <= n; i++) {   
-        if (is_prime[i]) {               
+    vector<bool> is_prime(n + 1, true);
+    is_prime[0] = is_prime[1] = false;
+    for (int i = 2; i * i <= n; i++) {
+        if (is_prime[i]) {
             for (int j = i * i; j <= n; j += i) is_prime[j] = false;
         }
     }
-    vi primes;  
+    vi primes;
     loop(i,2,n+1) {
-        if (is_prime[i])  primes.push_back(i); 
+        if (is_prime[i])  primes.push_back(i);
     }
     return primes;
 }
@@ -124,7 +125,7 @@ void spf_sieve(vector<int>& spf){
         }
     }
 }
-int nCr(int n, int r) { // O(r)
+int nCr(int n, int r) {
     if (r > n) return 0;
     if (r == 0 || r == n) return 1;
     int res = 1;
@@ -136,7 +137,7 @@ int nCr(int n, int r) { // O(r)
     return res;
 }
 int lcm(int a, int b) {
-    return (a / __gcd(a, b)) * b; 
+    return (a / __gcd(a, b)) * b;
 }
 bool isPerfectSqr(int num){
     int t = (int)sqrt(num);
@@ -154,11 +155,10 @@ int _sqrt(int num){
 #define onbit(mask,bit) ((mask)|(1LL<<(bit)))
 #define offbit(mask,bit) ((mask)&~(1LL<<(bit)))
 #define changebit(mask,bit) ((mask)^(1LL<<bit))
-
-#define ctz(x)      __builtin_ctz(x)	    //Count trailing zeros in int
-#define ctzll(x)    __builtin_ctzll(x)	    //Count trailing zeros in long long
-#define clz(x)      __builtin_clz(x)	    //Count leading zeros in int
-#define clzll(x)    __builtin_clzll(x)	    //Count leading zeros in long long
+#define ctz(x)      __builtin_ctz(x)
+#define ctzll(x)    __builtin_ctzll(x)
+#define clz(x)      __builtin_clz(x)
+#define clzll(x)    __builtin_clzll(x)
 //==========================================================================
 
 //=============================strings=============================
@@ -169,7 +169,7 @@ bool isSubstring(const string& substring, const string& mainStr) {
 
 //===============================modular arithmetic====================
 const int mod=1000000000+7;
-    
+
 ll mod_pow(ll a,ll b) {
     ll res=1LL;
     a%=mod;
@@ -179,7 +179,7 @@ ll mod_pow(ll a,ll b) {
     }
     while(b){
         if(b&1)res=res*a%mod;
-        a=a*a%mod; 
+        a=a*a%mod;
         b>>=1;
     }
     rtn res;
@@ -204,35 +204,67 @@ ll mod_div(ll a,ll b){
 
 int knightx[8]={-1,-2,-2,-1,1,2,2,1};
 int knighty[8]={-2,-1,1,2,2,1,-1,-2};
-
-int dr[]={-1,0,1,0}; //up,left,down,right
+int dr[]={-1,0,1,0};
 int dc[]={0,-1,0,1};
-bool in(int i,int j,int n,int m){
-    rtn (i>=0 && i<n && j>=0 && j<m);
+inline bool in(int i,int j,int n,int m){ rtn (i>=0 && i<n && j>=0 && j<m);}
+
+
+pi dfs(vi adj[],int node,vi& vis){
+    vis[node]=1;
+    int ht=0;
+    int dia=0;
+    int mx1=0,mx2=0;
+
+    for(int& neigh:adj[node]){
+        if(vis[neigh]) continue;
+        pi p=dfs(adj,neigh,vis);
+        ht= max(ht,p.ff+1);
+        dia=max(dia,p.ss);
+
+        int child_ht=p.ff;
+        if(child_ht>=mx1){
+            mx2=mx1;
+            mx1=child_ht;
+        }else if(child_ht<mx1 && child_ht>=mx2){
+            mx2=child_ht;
+        }
+    }
+    dia=max(dia, mx1+mx2+1);
+    if(!ht) ht++;
+
+    //cerr<<"node: "<<node<<' '<<"height: "<<ht<<" "<<"Dia :"<<dia<<nl;
+
+    rtn {ht,dia};
 }
 
-
-
-
 int solve(){
-    
+    int n; cin>>n;
+    vi adj[n+1];
+    vi deg(n+1,0);
+    loop(i,0,n-1){
+        int s,e; cin>>s>>e;
+        deg[e]++;deg[s]++;
+        adj[s].emplace_back(e);
+        adj[e].emplace_back(s);
+    }
+    int root=0;
+    loop(i,1,n+1){
+        if(deg[i]==1){
+            root=i;
+            break;
+        }
+    }
+    vi vis(n+1,0);
+    int ans= dfs(adj,root,vis).ss;
 
+    rtn ans-1;
 }
 
 int32_t main(){
     gourav_27
-    
-    test_cases{
 
-        //solve();
+    //solve();
+    outln(solve());
 
-       //outln(solve());
-
-        // if(solve()) outln("YES");
-        // else outln("NO");
-    }
-    
     rtn 0;
 }
-
-
